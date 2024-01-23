@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rates_tags %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="correction" style="height:4.5em;"></div>
+
+    <div class="main-content">
+        <div class="start-process">
+            <div id="label">USD - RUB:</div>
+            <a href="{% url 'rates:get_current_usd' %}?get_rates=1" id="start-button">show rate</a>
+        </div>
+
+        <div class="wait-process">
+            <div id="warning-message">wait 10 seconds</div>
+            <img id="wait-img" src="{% static 'img/gear.svg' %}">
+        </div>
+
+        <div id="rates-list">
+            <p class="rates-list-message">Last 10 entries maximum. If they exist</p>
+            {% get_lines as lines %}
+            {% for line in lines %}
+                <div class="rate">time: {{ line.date }} | rate: {{ line.rate }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if wait_process %}
+        <script>
+            document.getElementById("wait-img").style.display = "block";
+            document.getElementById("warning-message").style.display = "block";
+            document.getElementById("label").style.display = "none";
+            document.getElementById("start-button").style.display = "none";
+
+            setTimeout(() => document.getElementById("wait-img").style.display = "none", 10000);
+            setTimeout(() => document.getElementById("warning-message").style.display = "none", 10000);
+            setTimeout(() => document.getElementById("label").style.display = "block", 10000);
+            setTimeout(() => document.getElementById("start-button").style.display = "block", 10000);
+        </script>
+    {% endif %}
+{% endblock %}

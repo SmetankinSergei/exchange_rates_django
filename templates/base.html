@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/null_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block style %}{% endblock %}
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="side-bar">
+            <img class="logo" src="{% static 'img/logo.svg' %}">
+            <p class="truck-store">EXCHANGE RATE</p>
+
+            <div class="side-bar-navigation">
+                <nav>
+
+                </nav>
+            </div>
+        </div>
+
+        <div class="content">
+            <header>
+                <div class="site-navigation">
+                    <nav>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="auth-navigation">
+                    <nav>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            {% block content %}{% endblock %}
+
+            <footer>
+                <div class="developer-contact">
+                    <a href="https://t.me/elcapitansmetankins" target="_blank">
+                        <img class="logo-telegram" src="{% static 'img/logo-telegram.svg' %}" alt="logo Telegram">
+                    </a>
+                    <a href="https://t.me/elcapitansmetankins" target="_blank">
+                        <div class="developer-contact-text">developer contact</div>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
